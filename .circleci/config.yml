@@ -35,7 +35,7 @@ jobs:
 
       - run:
           name: "attach workspace"
-          command: cat out.txt
+          command: cat ~/out.txt
 
 
   say-my-name:
