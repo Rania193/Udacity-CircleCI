@@ -18,7 +18,7 @@ jobs:
           name: "Save hello world output"
           command: echo "hello world" > out.txt 
       - persist_to_workspace:
-          root: D:/
+          root: D:/circleci/repo/Udacity-CircleCI/.cicleci
           paths:
             - out.txt
   print_output_file:
@@ -31,7 +31,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: D:/
+          at: D:/circleci/repo/Udacity-CircleCI/.cicleci
 
       - run:
           name: "attach workspace"
