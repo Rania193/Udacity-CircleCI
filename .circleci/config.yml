@@ -18,9 +18,9 @@ jobs:
           name: "Save hello world output"
           command: echo "hello world" > out.txt 
       - persist_to_workspace:
-          root: D://
+          root: ~/
           paths:
-            - circleci
+            - output.txt
   print_output_file:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
@@ -31,7 +31,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: D://
+          at: ~/
 
       - run:
           name: "attach workspace"
@@ -57,5 +57,7 @@ workflows:
   say-hello-workflow:
     jobs:
       - save_hello_world_output
-      - print_output_file
+      - print_output_file:
+          requires:
+            - save_hello_world_output
       - say-my-name
