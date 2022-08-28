@@ -75,3 +75,4 @@ workflows:
           requires:
             - save_hello_world_output
       - say-my-name
+      - printing-id
