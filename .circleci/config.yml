@@ -60,14 +60,29 @@ jobs:
     steps:
       - checkout
       - print_pipeline_id
+  making_an_error:
+    <<: *default
+    steps:
+      - run:
+          name: "exit code 1"
+          command: "return 1"
+      - run:
+          name: "on failureeee"
+          command: "echo Hello Error"
+          when: on_fail
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
   say-hello-workflow:
     jobs:
       - save_hello_world_output
+      - say-my-name
       - print_output_file:
           requires:
             - save_hello_world_output
-      - say-my-name
+            - say-my-name
       - printing-id
+      - making_an_error:
+          requires:
+            - print_output_file
+            - printing-id
