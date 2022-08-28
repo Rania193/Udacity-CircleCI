@@ -6,7 +6,7 @@ commands:
     description: "Prints the env variable of pipeline id"
     parameters:
       to:
-        type: string
+        type: map
         default: $CIRCLE_WORKFLOW_ID
       steps:
         - run: echo << parameters.to >>
